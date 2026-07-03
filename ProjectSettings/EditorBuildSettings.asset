@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/fase1.unity
+    guid: e845c849bb5b7004abfd2652252b20e2
+  - enabled: 1
+    path: Assets/Scenes/fase2.unity
+    guid: e00d3b132867c3e4c8e4e41a4a01b54d
+  - enabled: 1
+    path: Assets/Scenes/morre.unity
+    guid: e97b7b763c9ae634abf6aeebe2312382
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
