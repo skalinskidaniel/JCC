@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class morrer : MonoBehaviour
 {
-    [Tooltip("Tempo de espera (em segundos) antes de reiniciar a fase. Deixe 0 para reiniciar na hora.")]
     public float atrasoParaReiniciar = 0f;
 
     void OnTriggerEnter(Collider other)
