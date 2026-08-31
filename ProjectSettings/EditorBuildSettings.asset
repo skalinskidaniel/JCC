@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/fase2.unity
     guid: e00d3b132867c3e4c8e4e41a4a01b54d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/morre.unity
     guid: e97b7b763c9ae634abf6aeebe2312382
   m_configObjects:

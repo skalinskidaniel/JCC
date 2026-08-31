@@ -3,19 +3,33 @@ using UnityEngine.SceneManagement;
 
 public class morrer : MonoBehaviour
 {
-    public string proximafase = "fase02";
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Tooltip("Tempo de espera (em segundos) antes de reiniciar a fase. Deixe 0 para reiniciar na hora.")]
+    public float atrasoParaReiniciar = 0f;
 
-    // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("morre"))
         {
-            SceneManager.LoadScene(proximafase);
+            ReiniciarFase();
         }
+    }
+
+    void ReiniciarFase()
+    {
+        Scene cenaAtual = SceneManager.GetActiveScene();
+
+        if (atrasoParaReiniciar > 0f)
+        {
+            Invoke(nameof(CarregarCenaAtual), atrasoParaReiniciar);
+        }
+        else
+        {
+            SceneManager.LoadScene(cenaAtual.buildIndex);
+        }
+    }
+
+    void CarregarCenaAtual()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

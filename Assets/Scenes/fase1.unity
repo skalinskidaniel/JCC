@@ -1611,7 +1611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db416da4e94b57544bbf6702cdfcd275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::morrer
-  proximafase: SampleScene
+  atrasoParaReiniciar: 0
 --- !u!23 &1242766320
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2384,14 +2384,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3213378364045581643, guid: 52d0813293387ba44b781345078bd4c7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4613620218217611827}
+      addedObject: {fileID: 4613620218217611834}
   m_SourcePrefab: {fileID: 100100000, guid: 52d0813293387ba44b781345078bd4c7, type: 3}
 --- !u!1 &4613620218217611826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3213378364045581643, guid: 52d0813293387ba44b781345078bd4c7, type: 3}
   m_PrefabInstance: {fileID: 4613620218217611825}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4613620218217611827
+--- !u!114 &4613620218217611834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2403,7 +2403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db416da4e94b57544bbf6702cdfcd275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::morrer
-  proximafase: morre
+  atrasoParaReiniciar: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
