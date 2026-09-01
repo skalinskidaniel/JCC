@@ -20,9 +20,5 @@ public class ganhar : MonoBehaviour
             SceneManager.LoadScene(proximafase);
         }
         
-         if (other.CompareTag("morre"))
-        {
-            SceneManager.LoadScene(proximafase);
-        }
     }
 }

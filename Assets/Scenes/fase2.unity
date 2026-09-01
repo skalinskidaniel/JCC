@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db416da4e94b57544bbf6702cdfcd275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::morrer
-  proximafase: fase1
+  atrasoParaReiniciar: 0
 --- !u!65 &849008391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db416da4e94b57544bbf6702cdfcd275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::morrer
-  proximafase: fase1
+  atrasoParaReiniciar: 0
 --- !u!1001 &1231061851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3179,8 +3179,8 @@ SceneRoots:
   - {fileID: 1573730650}
   - {fileID: 1202119065}
   - {fileID: 1381137777}
-  - {fileID: 655713283}
   - {fileID: 1869837619}
+  - {fileID: 655713283}
   - {fileID: 1137695542}
   - {fileID: 391454375}
   - {fileID: 28805487}
