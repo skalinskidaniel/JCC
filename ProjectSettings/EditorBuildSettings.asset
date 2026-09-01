@@ -14,5 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/fase2.unity
     guid: e00d3b132867c3e4c8e4e41a4a01b54d
+  - enabled: 1
+    path: Assets/Scenes/mapa de agua.unity
+    guid: 6dc6865dd85d7f5469ef287abf4061f0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_UseUCBPForAssetBundles: 0

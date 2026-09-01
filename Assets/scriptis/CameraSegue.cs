@@ -1,58 +1,58 @@
 using UnityEngine;
 
 /// <summary>
-/// Script responsável por fazer a câmera seguir um alvo (como o jogador) de forma suave.
+/// Script responsï¿½vel por fazer a cï¿½mera seguir um alvo (como o jogador) de forma suave.
 /// Deve ser anexado ao objeto Main Camera.
 /// </summary>
 public class CameraSegue : MonoBehaviour
 {
-    // [SerializeField] permite que a variável apareça no Inspector da Unity,
+    // [SerializeField] permite que a variï¿½vel apareï¿½a no Inspector da Unity,
     // mas o 'private' impede que outros scripts alterem esse valor acidentalmente (Encapsulamento).
 
     [Header("Alvo Principal")]
-    [Tooltip("Arraste o objeto que a câmera deve seguir (ex: o Jogador) para cá.")]
+    [Tooltip("Arraste o objeto que a cï¿½mera deve seguir (ex: o Jogador) para cï¿½.")]
     [SerializeField] private Transform alvo;
 
-    [Header("Configurações de Posição")]
-    [Tooltip("A distância exata que a câmera vai manter do alvo (Eixos X, Y e Z).")]
-    [SerializeField] private Vector3 distanciaOffset = new Vector3(0, 5, -10);
+    [Header("Configuraï¿½ï¿½es de Posiï¿½ï¿½o")]
+    [Tooltip("A distï¿½ncia exata que a cï¿½mera vai manter do alvo (Eixos X, Y e Z).")]
+    [SerializeField] private Vector3 distanciaOffset = new Vector3(0, 5, -50);
 
-    [Tooltip("Velocidade com que a câmera acompanha o alvo. Valores maiores deixam a câmera mais rápida/rígida.")]
+    [Tooltip("Velocidade com que a cï¿½mera acompanha o alvo. Valores maiores deixam a cï¿½mera mais rï¿½pida/rï¿½gida.")]
     [SerializeField] private float velocidadeSuavizacao = 5f;
 
-    [Header("Configurações de Rotação")]
-    [Tooltip("Marque esta caixa se quiser que a câmera sempre gire para 'encarar' o alvo.")]
+    [Header("Configuraï¿½ï¿½es de Rotaï¿½ï¿½o")]
+    [Tooltip("Marque esta caixa se quiser que a cï¿½mera sempre gire para 'encarar' o alvo.")]
     [SerializeField] private bool olharParaOAlvo = false;
 
     /// <summary>
-    /// Usamos o LateUpdate em vez do Update clássico para movimentar câmeras.
-    /// O LateUpdate roda DEPOIS de todos os Updates e cálculos de Física (FixedUpdate).
-    /// Isso garante que a bola já se moveu neste frame antes de movermos a câmera, evitando "tremedeiras" na tela.
+    /// Usamos o LateUpdate em vez do Update clï¿½ssico para movimentar cï¿½meras.
+    /// O LateUpdate roda DEPOIS de todos os Updates e cï¿½lculos de Fï¿½sica (FixedUpdate).
+    /// Isso garante que a bola jï¿½ se moveu neste frame antes de movermos a cï¿½mera, evitando "tremedeiras" na tela.
     /// </summary>
     private void LateUpdate()
     {
-        // Trava de segurança: se o aluno esquecer de arrastar o alvo no Inspector, 
-        // o script avisa no Console e para a execução, evitando que o jogo trave com erros vermelhos.
+        // Trava de seguranï¿½a: se o aluno esquecer de arrastar o alvo no Inspector, 
+        // o script avisa no Console e para a execuï¿½ï¿½o, evitando que o jogo trave com erros vermelhos.
         if (alvo == null)
         {
-            Debug.LogWarning("A câmera não tem um alvo para seguir! Vá no Inspector e arraste o jogador.", this);
+            Debug.LogWarning("A cï¿½mera nï¿½o tem um alvo para seguir! Vï¿½ no Inspector e arraste o jogador.", this);
             return;
         }
 
-        // 1. Posição Alvo: Onde a câmera DEVERIA estar neste exato momento? 
-        // (É a posição atual da bola + a distância que configuramos)
+        // 1. Posiï¿½ï¿½o Alvo: Onde a cï¿½mera DEVERIA estar neste exato momento? 
+        // (ï¿½ a posiï¿½ï¿½o atual da bola + a distï¿½ncia que configuramos)
         Vector3 posicaoDesejada = alvo.position + distanciaOffset;
 
-        // 2. Transição Suave (O famoso "Lerp"):
-        // O Vector3.Lerp calcula um ponto intermediário entre onde a câmera está e para onde ela quer ir.
-        // Multiplicar por Time.deltaTime é o segredo dos jogos profissionais: isso garante que a câmera 
-        // se mova na mesma velocidade em qualquer celular, seja ele muito rápido ou muito lento.
+        // 2. Transiï¿½ï¿½o Suave (O famoso "Lerp"):
+        // O Vector3.Lerp calcula um ponto intermediï¿½rio entre onde a cï¿½mera estï¿½ e para onde ela quer ir.
+        // Multiplicar por Time.deltaTime ï¿½ o segredo dos jogos profissionais: isso garante que a cï¿½mera 
+        // se mova na mesma velocidade em qualquer celular, seja ele muito rï¿½pido ou muito lento.
         Vector3 posicaoSuavizada = Vector3.Lerp(transform.position, posicaoDesejada, velocidadeSuavizacao * Time.deltaTime);
 
-        // 3. Finalmente, aplicamos a nova posição calculada à nossa câmera
+        // 3. Finalmente, aplicamos a nova posiï¿½ï¿½o calculada ï¿½ nossa cï¿½mera
         transform.position = posicaoSuavizada;
 
-        // 4. Efeito opcional: Fazer a câmera virar como um "pescoço" para olhar para a bola
+        // 4. Efeito opcional: Fazer a cï¿½mera virar como um "pescoï¿½o" para olhar para a bola
         if (olharParaOAlvo)
         {
             transform.LookAt(alvo);
