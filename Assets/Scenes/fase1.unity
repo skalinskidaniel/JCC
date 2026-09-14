@@ -608,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ganhar
   proximafase: fase2
+  numeroFaseAtual: 1
 --- !u!65 &996818440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -783,7 +784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5666261585234168772, guid: 9e2a4252ba922c943905e8226cba2674, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.09
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 6507901977716847365, guid: 9e2a4252ba922c943905e8226cba2674, type: 3}
       propertyPath: m_TagString
