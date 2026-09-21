@@ -3,53 +3,53 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Script responsável por movimentar um objeto (bola) usando física (torque) 
+/// Script responsï¿½vel por movimentar um objeto (bola) usando fï¿½sica (torque) 
 /// e interagir gerando novos objetos. 
 /// Utiliza a classe C# gerada automaticamente pelo Input Action Asset.
 /// </summary>
-[RequireComponent(typeof(Rigidbody))] // Segurança didática: Garante que a Unity adicione um Rigidbody automaticamente para não dar erro se o aluno esquecer
+[RequireComponent(typeof(Rigidbody))] // Seguranï¿½a didï¿½tica: Garante que a Unity adicione um Rigidbody automaticamente para nï¿½o dar erro se o aluno esquecer
 public class MovimentoBola : MonoBehaviour
 {
-    [Header("Configurações de Física")]
-    [Tooltip("Controla a força de rotação da bola. Valores maiores deixam a bola mais rápida.")]
+    [Header("Configuraï¿½ï¿½es de Fï¿½sica")]
+    [Tooltip("Controla a forï¿½a de rotaï¿½ï¿½o da bola. Valores maiores deixam a bola mais rï¿½pida.")]
     [SerializeField] private float velocidade = 10f;
 
-    [Header("Configurações de Interação")]
-    [Tooltip("Arraste para cá o Prefab que vai 'nascer' quando o jogador apertar o botão de ação.")]
+    [Header("Configuraï¿½ï¿½es de Interaï¿½ï¿½o")]
+    [Tooltip("Arraste para cï¿½ o Prefab que vai 'nascer' quando o jogador apertar o botï¿½o de aï¿½ï¿½o.")]
     [SerializeField] private GameObject objetoPrefab;
 
-    // Variável interna para guardar a referência do nosso componente de física
+    // Variï¿½vel interna para guardar a referï¿½ncia do nosso componente de fï¿½sica
     private Rigidbody rb;
 
     // 2. A NOSSA CLASSE GERADA: 
-    // ATENÇÃO ALUNOS: "ControlesDoJogo" deve ser o nome exato do arquivo .inputactions de vocês!
-    // Essa variável vai guardar todo o nosso mapa de botões e sensores.
+    // ATENï¿½ï¿½O ALUNOS: "ControlesDoJogo" deve ser o nome exato do arquivo .inputactions de vocï¿½s!
+    // Essa variï¿½vel vai guardar todo o nosso mapa de botï¿½es e sensores.
     private Controles input;
 
     /// <summary>
-    /// O Awake é chamado assim que o jogo começa, antes mesmo do primeiro frame.
-    /// É o melhor lugar para "preparar o terreno" e configurar nossas variáveis.
+    /// O Awake ï¿½ chamado assim que o jogo comeï¿½a, antes mesmo do primeiro frame.
+    /// ï¿½ o melhor lugar para "preparar o terreno" e configurar nossas variï¿½veis.
     /// </summary>
     private void Awake()
     {
-        // Pega o componente Rigidbody que está "grudado" neste mesmo objeto
+        // Pega o componente Rigidbody que estï¿½ "grudado" neste mesmo objeto
         rb = GetComponent<Rigidbody>();
 
-        // "Constrói"/Instacia a nossa classe de controles para que possamos usá-la no script
+        // "Constrï¿½i"/Instacia a nossa classe de controles para que possamos usï¿½-la no script
         input = new Controles();
 
-        // Verifica se o dispositivo atual possui um acelerômetro físico
+        // Verifica se o dispositivo atual possui um acelerï¿½metro fï¿½sico
         if (UnityEngine.InputSystem.Accelerometer.current != null)
         {
-            // Força a Unity a ligar o sensor e começar a ler os dados
+            // Forï¿½a a Unity a ligar o sensor e comeï¿½ar a ler os dados
             UnityEngine.InputSystem.InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
         }
     }
 
     /// <summary>
-    /// OnEnable é ativado toda vez que este objeto "nasce" ou é ligado na cena.
-    /// No Novo Input System, OS CONTROLES COMEÇAM DESLIGADOS por padrão para economizar memória.
-    /// Precisamos ligá-los explicitamente aqui.
+    /// OnEnable ï¿½ ativado toda vez que este objeto "nasce" ou ï¿½ ligado na cena.
+    /// No Novo Input System, OS CONTROLES COMEï¿½AM DESLIGADOS por padrï¿½o para economizar memï¿½ria.
+    /// Precisamos ligï¿½-los explicitamente aqui.
     /// </summary>
     private void OnEnable()
     {
@@ -58,8 +58,8 @@ public class MovimentoBola : MonoBehaviour
     }
 
     /// <summary>
-    /// OnDisable é ativado quando o objeto é desligado ou destruído.
-    /// É uma boa prática de programação desligar os controles quando não estamos usando.
+    /// OnDisable ï¿½ ativado quando o objeto ï¿½ desligado ou destruï¿½do.
+    /// ï¿½ uma boa prï¿½tica de programaï¿½ï¿½o desligar os controles quando nï¿½o estamos usando.
     /// </summary>
     private void OnDisable()
     {
@@ -67,54 +67,54 @@ public class MovimentoBola : MonoBehaviour
     }
 
     /// <summary>
-    /// FixedUpdate é o coração da Física na Unity. Ele roda em um tempo fixo,
-    /// garantindo que a bola não se mova de forma bizarra se o computador do jogador for lento.
-    /// Usamos ele SEMPRE que fomos aplicar forças no Rigidbody.
+    /// FixedUpdate ï¿½ o coraï¿½ï¿½o da Fï¿½sica na Unity. Ele roda em um tempo fixo,
+    /// garantindo que a bola nï¿½o se mova de forma bizarra se o computador do jogador for lento.
+    /// Usamos ele SEMPRE que fomos aplicar forï¿½as no Rigidbody.
     /// </summary>
     private void FixedUpdate()
     {
         // 3. LENDO O INPUT DE MOVIMENTO:
-        // Lemos o valor que está vindo do teclado (WASD) ou do acelerômetro do celular.
-        // Como configuramos para Vector3, ele nos dá (X, Y, Z).
+        // Lemos o valor que estï¿½ vindo do teclado (WASD) ou do acelerï¿½metro do celular.
+        // Como configuramos para Vector3, ele nos dï¿½ (X, Y, Z).
         Vector3 inputMovimento = input.Gameplay.Movimento.ReadValue<Vector3>();
 
-        // Enviamos esse valor lido para a nossa função que faz a bola girar
+        // Enviamos esse valor lido para a nossa funï¿½ï¿½o que faz a bola girar
         AplicarTorque(inputMovimento);
     }
 
     /// <summary>
-    /// Função criada por nós para organizar o código. 
-    /// Ela transforma a entrada do jogador em força física (Torque).
+    /// Funï¿½ï¿½o criada por nï¿½s para organizar o cï¿½digo. 
+    /// Ela transforma a entrada do jogador em forï¿½a fï¿½sica (Torque).
     /// </summary>
     private void AplicarTorque(Vector3 inputAtual)
     {
         // 4. TRADUZINDO OS EIXOS:
         // No teclado, W e S geram valores no eixo Y do Vector3. Mas no mundo 3D do jogo,
-        // para ir para frente e para trás, precisamos girar no eixo Z.
+        // para ir para frente e para trï¿½s, precisamos girar no eixo Z.
         // Por isso, trocamos os eixos de lugar aqui.
         Vector3 direcaoTorque = new Vector3(
-            inputAtual.y * velocidade, // O Y do controle vira a rotação (Z) no jogo
-            0,                         // Não queremos que a bola pule (eixo Y do jogo)
+            inputAtual.y * velocidade, // O Y do controle vira a rotaï¿½ï¿½o (Z) no jogo
+            0,                         // Nï¿½o queremos que a bola pule (eixo Y do jogo)
             inputAtual.x * -velocidade // O X do controle continua sendo o X, mas invertido para girar certo
         );
 
-        // Se o jogador estiver apertando alguma tecla (ou seja, se a direção não for zero)
+        // Se o jogador estiver apertando alguma tecla (ou seja, se a direï¿½ï¿½o nï¿½o for zero)
         if (direcaoTorque != Vector3.zero)
         {
-            // Aplica a força de giro (Torque) na bola
+            // Aplica a forï¿½a de giro (Torque) na bola
             rb.AddTorque(direcaoTorque, ForceMode.Force);
         }
     }
 
     /// <summary>
     /// O Update roda a cada frame (imagem) gerada na tela.
-    /// É o lugar perfeito para checar se botões de ação rápida foram apertados.
+    /// ï¿½ o lugar perfeito para checar se botï¿½es de aï¿½ï¿½o rï¿½pida foram apertados.
     /// </summary>
     private void Update()
     {
-        // 5. LENDO O BOTÃO DE AÇÃO:
-        // "WasPressedThisFrame" verifica se o botão foi apertado EXATAMENTE neste milissegundo.
-        // Isso evita que o jogo crie mil objetos se o jogador segurar o botão pressionado.
+        // 5. LENDO O BOTï¿½O DE Aï¿½ï¿½O:
+        // "WasPressedThisFrame" verifica se o botï¿½o foi apertado EXATAMENTE neste milissegundo.
+        // Isso evita que o jogo crie mil objetos se o jogador segurar o botï¿½o pressionado.
         if (input.Gameplay.Acao.WasPressedThisFrame())
         {
             CriarEProgramarDestruicaoObjeto();
@@ -122,44 +122,42 @@ public class MovimentoBola : MonoBehaviour
     }
 
     /// <summary>
-    /// Instancia (cria) um novo objeto no mundo e agenda a destruição dele.
+    /// Instancia (cria) um novo objeto no mundo e agenda a destruiï¿½ï¿½o dele.
     /// </summary>
     private void CriarEProgramarDestruicaoObjeto()
     {
-        // Trava de segurança: avisa no console se o aluno esqueceu de arrastar o Prefab no Inspector
+        // Trava de seguranï¿½a: avisa no console se o aluno esqueceu de arrastar o Prefab no Inspector
         if (objetoPrefab == null)
         {
-            Debug.LogWarning("Ops! Você esqueceu de arrastar o Prefab para o script no Inspector!", this);
-            return; // Sai da função para não dar erro fatal no jogo
+            Debug.LogWarning("Ops! Vocï¿½ esqueceu de arrastar o Prefab para o script no Inspector!", this);
+            return; // Sai da funï¿½ï¿½o para nï¿½o dar erro fatal no jogo
         }
 
-        // Cria uma cópia do objeto exatamente na mesma posição da bola
+        // Cria uma cï¿½pia do objeto exatamente na mesma posiï¿½ï¿½o da bola
         GameObject clone = Instantiate(objetoPrefab, transform.position, Quaternion.identity);
 
         // Faz o novo objeto "grudar" na bola (vira filho dela)
         clone.transform.SetParent(transform, true);
 
-        // Destrói este clone automaticamente após 1 segundo, para não lotar a memória do computador
+        // Destrï¿½i este clone automaticamente apï¿½s 1 segundo, para nï¿½o lotar a memï¿½ria do computador
         Destroy(clone, 1f);
     }
 
     /// <summary>
-    /// O método OnGUI desenha elementos de interface simples diretamente na tela.
-    /// Excelente para debugar variáveis no celular de forma rápida!
+    /// O mï¿½todo OnGUI desenha elementos de interface simples diretamente na tela.
+    /// Excelente para debugar variï¿½veis no celular de forma rï¿½pida!
     /// </summary>
     private void OnGUI()
     {
-        // 1. Aumenta o tamanho da fonte para que dê para ler na tela do celular
+        // 1. Aumenta o tamanho da fonte para que dï¿½ para ler na tela do celular
         GUI.skin.label.fontSize = 60;
 
-        // 2. Lê o valor atual que está vindo do Input
+        // 2. Lï¿½ o valor atual que estï¿½ vindo do Input
         Vector3 debugMovimento = input.Gameplay.Movimento.ReadValue<Vector3>();
 
         // 3. Desenha o texto na tela. 
-        // Rect(posição X, posição Y, largura, altura)
-        GUI.Label(new Rect(50, 50, 1000, 200), "Input X: " + debugMovimento.x.ToString("F2"));
-        GUI.Label(new Rect(50, 120, 1000, 200), "Input Y: " + debugMovimento.y.ToString("F2"));
-        GUI.Label(new Rect(50, 190, 1000, 200), "Input Z: " + debugMovimento.z.ToString("F2"));
+        // Rect(posiï¿½ï¿½o X, posiï¿½ï¿½o Y, largura, altura)
+       
     }
 
 }
